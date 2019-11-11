@@ -9,7 +9,9 @@
 
 ~~~sh
 export PATH="node_modules/.bin:$PATH" # Add node modules to path
+$MASK clean
 $MASK config dev
+tsc # Build once before starting the service...
 concurrently -k -p "[{name}]" \
     -n "TypeScript,Node" -c "cyan.bold,green.bold" \
     "tsc --watch" \
