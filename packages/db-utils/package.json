@@ -1,0 +1,7 @@
+{
+  "name": "@jakedeichert/db-utils",
+  "version": "0.1.0",
+  "author": "Jake Deichert",
+  "private": true,
+  "main": "./src/index.ts"
+}
