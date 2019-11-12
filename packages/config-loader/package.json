@@ -8,5 +8,19 @@
     "dev": "npm run clean && tsc --watch",
     "build": "npm run clean && tsc",
     "clean": "rm -rf dist"
+  },
+  "dependencies": {
+    "dotenv": "8.2.0",
+    "joi": "14.3.1"
+  },
+  "devDependencies": {
+    "@jakedeichert/eslint-config": "4.0.5",
+    "@types/koa": "2.0.52",
+    "@types/koa__router": "8.0.1",
+    "@typescript-eslint/eslint-plugin": "2.6.1",
+    "@types/node": "12.12.7",
+    "@typescript-eslint/parser": "2.6.1",
+    "prettier": "1.19.1",
+    "typescript": "3.7.2"
   }
 }
