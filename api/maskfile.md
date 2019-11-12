@@ -10,12 +10,11 @@
 ~~~sh
 export PATH="node_modules/.bin:$PATH" # Add node modules to path
 $MASK clean
-$MASK config dev
 tsc # Build once before starting the service...
 concurrently -k -p "[{name}]" \
     -n "TypeScript,Node" -c "cyan.bold,green.bold" \
     "tsc --watch" \
-    "nodemon --watch dist --watch ../packages/**/dist --watch .env --exec 'node dist/index.js'"
+    "nodemon --watch dist --watch ../packages/**/dist --watch config/* --exec '$MASK config dev && node dist/index.js'"
 ~~~
 
 
