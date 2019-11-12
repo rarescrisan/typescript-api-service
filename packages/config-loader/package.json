@@ -15,10 +15,9 @@
   },
   "devDependencies": {
     "@jakedeichert/eslint-config": "4.0.5",
-    "@types/koa": "2.0.52",
-    "@types/koa__router": "8.0.1",
-    "@typescript-eslint/eslint-plugin": "2.6.1",
+    "@types/joi": "14.3.4",
     "@types/node": "12.12.7",
+    "@typescript-eslint/eslint-plugin": "2.6.1",
     "@typescript-eslint/parser": "2.6.1",
     "prettier": "1.19.1",
     "typescript": "3.7.2"
