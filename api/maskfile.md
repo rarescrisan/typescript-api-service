@@ -15,7 +15,7 @@ tsc # Build once before starting the service...
 concurrently -k -p "[{name}]" \
     -n "TypeScript,Node" -c "cyan.bold,green.bold" \
     "tsc --watch" \
-    "nodemon --watch dist --exec 'node dist/index.js'"
+    "nodemon --watch dist --watch ../packages/**/dist --watch .env --exec 'node dist/index.js'"
 ~~~
 
 

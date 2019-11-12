@@ -6,6 +6,18 @@ Commands for the entire monorepo.
 
 
 
+## bootstrap
+> Installs all dependencies and builds all packages
+
+~~~bash
+$MASK install
+$MASK build
+~~~
+
+
+
+
+
 ## install
 > Install all dependencies
 
@@ -28,6 +40,7 @@ do_install() {
 
 # Install all project dependencies.
 do_install api
+do_install packages/config-loader
 do_install packages/http-utils
 
 # Create a node_modules symlink to the packages directory
@@ -36,4 +49,24 @@ cd $MASKFILE_DIR
 rm -rf node_modules
 mkdir node_modules
 ln -s "$MASKFILE_DIR/packages/" ./node_modules/@jakedeichert
+~~~
+
+
+
+
+
+## build
+> Build all packages
+
+~~~bash
+do_build() {
+    project="$1"
+    cd "$MASKFILE_DIR/$project"
+    echo "Building $project"
+    npm run build
+}
+
+# Build all packages
+do_build packages/config-loader
+do_build packages/http-utils
 ~~~
