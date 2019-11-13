@@ -11,9 +11,9 @@
 export PATH="node_modules/.bin:$PATH" # Add node modules to path
 $MASK clean
 concurrently -p "[{name}]" \
-    -n "Node,TypeScript,Config" -c "cyan.bold,green.bold,magenta.bold" \
+    -n "TypeScript,Node,Config" -c "cyan.bold,green.bold,magenta.bold" \
     "tsc --watch --preserveWatchOutput" \
-    "watchexec -w dist -w . --exts js,env -r 'node dist/index.js'" \
+    "watchexec -w dist -w ../packages -w . --exts js,env -r 'node dist/index.js'" \
     "watchexec -w config -r 'echo \"Updating config...\" && $MASK config dev'"
 ~~~
 
