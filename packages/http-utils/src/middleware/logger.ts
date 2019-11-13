@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import { logger } from '../logger';
+import { logger } from '@jakedeichert/logger';
 import { Next, Middleware } from '../middleware';
 import { Context } from '../index';
 

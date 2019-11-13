@@ -1,21 +1,9 @@
 import { inspect } from 'util';
-import { createLogger, format, transports, Logger } from 'winston';
+import { format } from 'winston';
 
-export let logger: Logger;
-
-export function initLogger(logLevel: string) {
-    logger = createLogger({
-        level: logLevel,
-        format: format.combine(
-            format.colorize(),
-            format.timestamp(),
-            formatter
-        ),
-        exitOnError: false,
-        transports: [new transports.Console()],
-    });
-    return logger;
-}
+export default () => {
+    return format.combine(format.colorize(), format.timestamp(), formatter);
+};
 
 const formatter = format.printf(
     ({ level, message, timestamp, requestId, ctx, ...other }) => {
