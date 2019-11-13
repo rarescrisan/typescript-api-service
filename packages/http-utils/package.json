@@ -12,7 +12,7 @@
   "dependencies": {
     "@hapi/boom": "8.0.1",
     "@koa/router": "8.0.2",
-    "joi": "14.3.1",
+    "@hapi/joi": "16.0.0",
     "koa": "2.11.0",
     "koa-bodyparser": "4.2.1",
     "lodash": "4.17.15"
@@ -20,7 +20,7 @@
   "devDependencies": {
     "@jakedeichert/eslint-config": "4.0.5",
     "@types/hapi__boom": "7.4.1",
-    "@types/joi": "14.3.4",
+    "@types/hapi__joi": "16.0.0",
     "@types/koa": "2.0.52",
     "@types/koa-bodyparser": "4.3.0",
     "@types/koa__router": "8.0.1",

@@ -38,7 +38,7 @@ export const APP_ENV = assertValue(
     process.env.APP_ENV as AppEnv,
     validator()
         .string()
-        .valid([AppEnv.Development, AppEnv.Staging, AppEnv.Production])
+        .valid(AppEnv.Development, AppEnv.Staging, AppEnv.Production)
         .required()
 );
 
@@ -59,7 +59,7 @@ export const LOG_LEVEL = assertValue(
     process.env.LOG_LEVEL as string,
     validator()
         .string()
-        .valid(['error', 'warn', 'info', 'verbose', 'debug', 'silly'])
+        .valid('error', 'warn', 'info', 'verbose', 'debug', 'silly')
         .required()
 );
 

@@ -1,4 +1,4 @@
-import joi from 'joi';
+import joi from '@hapi/joi';
 import dotenv from 'dotenv';
 
 export function loadConfig(envFilename: string) {

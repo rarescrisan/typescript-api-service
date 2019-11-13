@@ -1,4 +1,4 @@
-import joi from 'joi';
+import joi from '@hapi/joi';
 import { Context } from './index';
 import { HttpResponse } from './response';
 

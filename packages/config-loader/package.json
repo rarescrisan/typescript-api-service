@@ -11,11 +11,11 @@
   },
   "dependencies": {
     "dotenv": "8.2.0",
-    "joi": "14.3.1"
+    "@hapi/joi": "16.0.0"
   },
   "devDependencies": {
     "@jakedeichert/eslint-config": "4.0.5",
-    "@types/joi": "14.3.4",
+    "@types/hapi__joi": "16.0.0",
     "@types/node": "12.12.7",
     "@typescript-eslint/eslint-plugin": "2.6.1",
     "@typescript-eslint/parser": "2.6.1",
