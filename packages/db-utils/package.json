@@ -8,5 +8,17 @@
     "dev": "npm run clean && tsc --watch",
     "build": "npm run clean && tsc",
     "clean": "rm -rf dist"
+  },
+  "dependencies": {
+    "knex": "0.20.1",
+    "pg": "7.12.1"
+  },
+  "devDependencies": {
+    "@jakedeichert/eslint-config": "4.0.5",
+    "@typescript-eslint/eslint-plugin": "2.6.1",
+    "@typescript-eslint/parser": "2.6.1",
+    "@types/pg": "7.11.2",
+    "prettier": "1.19.1",
+    "typescript": "3.7.2"
   }
 }
