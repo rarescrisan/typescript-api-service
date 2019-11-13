@@ -1,4 +1,5 @@
 import Koa from 'koa';
+import hapiBoom from '@hapi/boom';
 
 export interface Context {
     // The raw koa context
@@ -17,3 +18,6 @@ export interface Context {
     // Validated query parameters
     query: KeyValueMap;
 }
+
+// Expose boom so clients don't have to install it
+export const boom = hapiBoom;

@@ -10,6 +10,10 @@ export enum Method {
     Del = 'del',
 }
 
+export interface Controller {
+    endpoints(): HandlerConfig[];
+}
+
 export interface HandlerConfig {
     method: Method;
     route: string;
