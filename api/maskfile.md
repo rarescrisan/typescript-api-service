@@ -9,13 +9,12 @@
 
 ~~~sh
 export PATH="node_modules/.bin:$PATH" # Add node modules to path
-$MASK clean && mkdir dist
-tsc # Build once before starting the service...
-concurrently -k -p "[{name}]" \
-    -n "TypeScript,Node,Config" -c "cyan.bold,green.bold,magenta.bold" \
-    "tsc --watch" \
-    "nodemon --watch dist --watch .env --exec 'node dist/index.js'" \
-    "nodemon --watch config --ext sh --exec '$MASK config dev'"
+$MASK clean
+concurrently -p "[{name}]" \
+    -n "Node,TypeScript,Config" -c "cyan.bold,green.bold,magenta.bold" \
+    "tsc --watch --preserveWatchOutput" \
+    "watchexec -w dist -w . --exts js,env -r 'node dist/index.js'" \
+    "watchexec -w config -r 'echo \"Updating config...\" && $MASK config dev'"
 ~~~
 
 
@@ -165,4 +164,5 @@ eslint . --ext ts,js --ignore-pattern dist
 
 ~~~sh
 rm -rf dist
+mkdir dist
 ~~~
