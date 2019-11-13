@@ -1,8 +1,9 @@
 import Koa from 'koa';
 import hapiBoom from '@hapi/boom';
+import { Logger } from 'winston';
 
 export interface Context extends Koa.Context {
-    // logger: Logger;
+    logger: Logger;
     // txn: () => Promise<knex.Transaction>;
     // auth: Auth;
 

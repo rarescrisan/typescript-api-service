@@ -23,10 +23,11 @@ function initRoutes(app: Koa, controllers: Controller[]): void {
 
     controllers.forEach(controller => {
         controller.endpoints().forEach(endpoint => {
-            router[endpoint.method](endpoint.route, async (ctx: Context) => {
+            const handler = async (ctx: Context) => {
                 await runPreHandlerMiddleware(ctx, endpoint);
                 return endpoint.handler(ctx);
-            });
+            };
+            router[endpoint.method](endpoint.route, handler as any);
         });
     });
 
