@@ -25,6 +25,9 @@ $MASK build
 * clean
     * flags: -c --clean
     * desc: Clean install
+* force
+    * flags: -f --force
+    * desc: Delete the package-lock file
 
 ~~~bash
 do_install() {
@@ -34,6 +37,10 @@ do_install() {
         echo "Clearing dependencies in $project"
         rm -rf node_modules
     fi
+    if [[ "$force" == "true" ]]; then
+        echo "Deleting the package lock in file $project"
+        rm -rf package-lock.json
+    fi
     echo "Installing dependencies in $project"
     npm install
 }
@@ -41,6 +48,8 @@ do_install() {
 # Install all project dependencies.
 do_install api
 do_install packages/config-loader
+do_install packages/logger
+do_install packages/db-utils
 do_install packages/http-utils
 
 # Create a node_modules symlink to the packages directory
@@ -68,5 +77,7 @@ do_build() {
 
 # Build all packages
 do_build packages/config-loader
+do_build packages/logger
+do_build packages/db-utils
 do_build packages/http-utils
 ~~~
