@@ -16,7 +16,7 @@ async function validateRequestBody(
     handler: HandlerConfig
 ): Promise<void> {
     if (!handler.bodySchema) return;
-    ctx.body = validate(ctx.koa.request.body, handler.bodySchema);
+    ctx.state.body = validate(ctx.request.body, handler.bodySchema);
 }
 
 async function validateQueryParams(
@@ -24,7 +24,7 @@ async function validateQueryParams(
     handler: HandlerConfig
 ): Promise<void> {
     if (!handler.querySchema) return;
-    ctx.query = validate(ctx.koa.query, handler.querySchema);
+    ctx.state.query = validate(ctx.query, handler.querySchema);
 }
 
 function validate(

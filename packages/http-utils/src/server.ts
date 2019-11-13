@@ -3,27 +3,30 @@ import Router from '@koa/router';
 import { Controller } from './controller';
 import { Context } from './index';
 import { runPreHandlerMiddleware } from './middleware/pre-handler';
+import { MiddlewareHandler } from './middleware';
 
-export function createServer(controllers: Controller[]): Koa {
+export function createServer(
+    controllers: Controller[],
+    middleware: [MiddlewareHandler | null]
+): Koa {
     const app = new Koa();
-    // initMiddleware(app);
+
+    // Inject all middleware
+    middleware.forEach(m => m && app.use(m));
+
     initRoutes(app, controllers);
     return app;
 }
 
-export function initRoutes(app: Koa, controllers: Controller[]): void {
+function initRoutes(app: Koa, controllers: Controller[]): void {
     const router = new Router();
 
     controllers.forEach(controller => {
         controller.endpoints().forEach(endpoint => {
-            router[endpoint.method](
-                endpoint.route,
-                async (koaCtx: Koa.Context) => {
-                    const ctx = { koa: koaCtx } as Context;
-                    await runPreHandlerMiddleware(ctx, endpoint);
-                    return endpoint.handler(ctx);
-                }
-            );
+            router[endpoint.method](endpoint.route, async (ctx: Context) => {
+                await runPreHandlerMiddleware(ctx, endpoint);
+                return endpoint.handler(ctx);
+            });
         });
     });
 
