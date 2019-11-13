@@ -7,7 +7,7 @@ import { MiddlewareHandler } from './middleware';
 
 export function createServer(
     controllers: Controller[],
-    middleware: [MiddlewareHandler | null]
+    middleware: MiddlewareHandler[]
 ): Koa {
     const app = new Koa();
 
