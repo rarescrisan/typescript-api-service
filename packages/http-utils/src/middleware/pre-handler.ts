@@ -1,4 +1,4 @@
-import joi from 'joi';
+import * as joi from '@hapi/joi';
 import { Context, boom } from '../index';
 import { HandlerConfig } from '../controller';
 
@@ -31,12 +31,10 @@ function validate(
     raw: KeyValueMap,
     schema: KeyValueMap<joi.Schema>
 ): KeyValueMap {
-    const { error, value } = joi.validate(
-        raw,
-        joi.object().keys({
-            ...schema,
-        })
-    );
+    const structure = joi.object().keys({
+        ...schema,
+    });
+    const { error, value } = structure.validate(raw);
     if (error) {
         throw boom.badRequest(error.message);
     }

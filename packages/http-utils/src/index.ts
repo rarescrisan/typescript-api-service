@@ -1,6 +1,6 @@
 import Koa from 'koa';
 import hapiBoom from '@hapi/boom';
-import { Logger } from 'winston';
+import { Logger } from '@jakedeichert/logger';
 
 export interface Context extends Koa.Context {
     logger: Logger;
