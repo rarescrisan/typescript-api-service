@@ -121,6 +121,31 @@ cat "$MASKFILE_DIR/config/env.local.sh" >> .env
 
 
 
+## create
+
+### create migration (name)
+> Create a new database migration
+
+~~~sh
+timestamp=$(date +"%Y%m%d%H%M%S")
+filename="migrations/${timestamp}_${name// /-}.js"
+echo "Creating new migration: $filename"
+
+# Write a basic template
+echo "exports.up = function(knex) {
+    return knex.raw(\`\`);
+};
+
+exports.down = function(knex) {
+    return knex.raw(\`\`);
+};
+" > "$filename"
+~~~
+
+
+
+
+
 ## format
 
 > Format the project
