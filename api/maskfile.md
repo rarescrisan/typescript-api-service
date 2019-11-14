@@ -157,13 +157,14 @@ exports.down = function(knex) {
 
 ~~~sh
 export PATH="node_modules/.bin:$PATH" # Add node modules to path
-format="prettier '{config,lib,migrations,scripts,src,test,typings}/**/*.{js,jsx,ts,tsx,css,html,json}' '*.{js,jsx,ts,tsx,css,html,json}'"
+glob1="{config,lib,migrations,scripts,src,test,typings}/**/*.{js,jsx,ts,tsx,css,html,json}"
+glob2="*.{js,jsx,ts,tsx,css,html,json}"
 
 $MASK clean
 if [[ $check == "true" ]]; then
-    $format --list-different
+    prettier $glob1 $glob2 --list-different
 else
-    $format --write
+    prettier $glob1 $glob2 --write
 fi
 ~~~
 
