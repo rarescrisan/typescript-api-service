@@ -5,7 +5,7 @@ import {
 } from '@jakedeichert/db-utils/dist/client';
 import { runMigrations } from '@jakedeichert/db-utils/dist/migrate';
 
-export async function initDb() {
+export async function initDb(): Promise<void> {
     // Create the knex client and connection pool.
     createClient(DB_USER, DB_PASS, DB_HOST, DB_PORT, DB_NAME);
 
