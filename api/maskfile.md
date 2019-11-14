@@ -8,7 +8,7 @@
 > Start the dev server
 
 ~~~sh
-export PATH="node_modules/.bin:$PATH" # Add node modules to path
+export PATH="../node_modules/.bin:$PATH" # Add node modules to path
 $MASK clean
 concurrently -p "[{name}]" \
     -n "TypeScript,Node,Config" -c "cyan.bold,green.bold,magenta.bold" \
@@ -25,7 +25,7 @@ concurrently -p "[{name}]" \
 > Build in production mode
 
 ~~~sh
-export PATH="node_modules/.bin:$PATH" # Add node modules to path
+export PATH="../node_modules/.bin:$PATH" # Add node modules to path
 $MASK clean
 export NODE_ENV=production
 tsc
@@ -75,7 +75,7 @@ docker push $ecr_url
     * desc: Start jest in watch mode
 
 ~~~bash
-export PATH="node_modules/.bin:$PATH" # Add node modules to path
+export PATH="../node_modules/.bin:$PATH" # Add node modules to path
 $MASK clean
 
 if [[ "$clean" == "true" ]]; then
@@ -85,22 +85,6 @@ elif [[ "$watch" == "true" ]]; then
 else
     jest --verbose
 fi
-~~~
-
-
-
-
-
-## db
-
-### db migrate
-> Migrate the local database
-
-~~~sh
-export PATH="node_modules/.bin:$PATH" # Add node modules to path
-$MASK config dev
-knex migrate:latest
-echo "✅ DONE MIGRATING DATABASE"
 ~~~
 
 
@@ -155,7 +139,7 @@ exports.down = function(knex) {
     * desc: Show which files are not formatted correctly
 
 ~~~sh
-export PATH="node_modules/.bin:$PATH" # Add node modules to path
+export PATH="../node_modules/.bin:$PATH" # Add node modules to path
 glob1="{config,lib,migrations,scripts,src,test,typings}/**/*.{js,jsx,ts,tsx,css,html,json}"
 glob2="*.{js,jsx,ts,tsx,css,html,json}"
 

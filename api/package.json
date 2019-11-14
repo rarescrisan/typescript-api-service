@@ -1,7 +1,7 @@
 {
-  "name": "api",
-  "version": "0.1.0",
-  "author": "Jake Deichert",
-  "private": true,
-  "main": "./src/index.ts"
+    "name": "api",
+    "version": "0.1.0",
+    "author": "Jake Deichert",
+    "private": true,
+    "main": "./src/index.ts"
 }
