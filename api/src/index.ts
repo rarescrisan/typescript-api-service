@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { PORT, LOG_LEVEL } from './config';
 import { buildServer } from './server';
 import { initLogger, logger } from '@jakedeichert/logger';

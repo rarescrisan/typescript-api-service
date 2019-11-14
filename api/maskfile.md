@@ -178,7 +178,7 @@ fi
 ~~~sh
 export PATH="node_modules/.bin:$PATH" # Add node modules to path
 $MASK clean
-eslint . --ext ts,js --ignore-pattern dist
+eslint . --ext ts --ignore-pattern dist
 ~~~
 
 

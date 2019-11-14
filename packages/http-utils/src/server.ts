@@ -5,10 +5,12 @@ import { Context } from './index';
 import { runPreHandlerMiddleware } from './middleware/pre-handler';
 import { MiddlewareHandler } from './middleware';
 
+export type HttpServer = Koa;
+
 export function createServer(
     controllers: Controller[],
     middleware: Array<MiddlewareHandler | null>
-): Koa {
+): HttpServer {
     const app = new Koa();
 
     // Inject all middleware
