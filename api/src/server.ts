@@ -8,15 +8,19 @@ import dbTxnProvider from '@jakedeichert/http-utils/dist/middleware/db-txn-provi
 import { IS_TEST_MODE } from './config';
 
 export function buildServer() {
-    const controllers = [healthController];
+    return createServer(getControllers(), getMiddleware());
+}
 
-    const middleware = [
+export function getControllers() {
+    return [healthController];
+}
+
+export function getMiddleware() {
+    return [
         logger,
         errorHandler(!IS_TEST_MODE),
         bodyParser(1),
         responseBuilder,
         IS_TEST_MODE ? null : dbTxnProvider,
     ];
-
-    return createServer(controllers, middleware);
 }

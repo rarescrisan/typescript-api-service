@@ -1,0 +1,13 @@
+import { closeConnection } from '@jakedeichert/db-utils/dist/client';
+import { initEnvironment } from './server';
+
+let hasRun = false;
+
+// Runs once before the entire test suite.
+export default async function(): Promise<void> {
+    // When running test:watch, we don't need to rerun migrations.
+    if (hasRun) return Promise.resolve();
+    hasRun = true;
+    await initEnvironment();
+    await closeConnection();
+}

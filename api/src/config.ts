@@ -5,8 +5,15 @@ import {
     validator,
 } from '@jakedeichert/config-loader';
 
-// In production, there's no env file since kube owns the config.
-loadConfig('.env');
+export const IS_TEST_MODE = process.env.NODE_ENV === 'test';
+
+if (IS_TEST_MODE) {
+    // Ignore .env and use the test config file.
+    loadConfig('./config/env.test.sh');
+} else {
+    // In production, there's no .env file since kube owns the config.
+    loadConfig('.env');
+}
 
 export enum AppEnv {
     Production = 'production',
@@ -22,14 +29,6 @@ export const VERSION: string = assertValue(
     pkg.version,
     validator()
         .string()
-        .required()
-);
-
-export const IS_TEST_MODE = assertValue(
-    'IS_TEST_MODE',
-    process.env.NODE_ENV === 'test',
-    validator()
-        .bool()
         .required()
 );
 

@@ -1,13 +1,7 @@
 import { Context } from '@jakedeichert/http-utils';
 import * as healthRepo from './repo';
 
-interface DbHealth {
-    healthy: boolean;
-}
-
-export async function checkDb(ctx: Context): Promise<DbHealth> {
+export async function checkDb(ctx: Context): Promise<boolean> {
     const healthy = await healthRepo.canConnect(ctx);
-    return {
-        healthy,
-    };
+    return healthy;
 }
