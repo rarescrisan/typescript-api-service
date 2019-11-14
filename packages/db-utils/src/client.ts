@@ -1,5 +1,5 @@
 import knex from 'knex';
-import { logger } from '@jakedeichert/logger';
+import { logger } from '@/logger';
 
 export let knexClient: knex;
 

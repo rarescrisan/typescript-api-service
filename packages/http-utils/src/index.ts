@@ -1,7 +1,7 @@
 import Koa from 'koa';
 import hapiBoom from '@hapi/boom';
-import { Logger } from '@jakedeichert/logger';
-import { Txn } from '@jakedeichert/db-utils/dist/txn';
+import { Logger } from '@/logger';
+import { Txn } from '@/db-utils/dist/txn';
 
 export interface Context extends Koa.Context {
     logger: Logger;

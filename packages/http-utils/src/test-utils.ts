@@ -1,9 +1,9 @@
 import { Server } from 'http';
 import { Next, Middleware } from './middleware';
-import { createTransactionProvider } from '@jakedeichert/db-utils/dist/txn';
+import { createTransactionProvider } from '@/db-utils/dist/txn';
 import { Context } from './index';
-import { logger } from '@jakedeichert/logger';
-import { closeConnection } from '@jakedeichert/db-utils/dist/client';
+import { logger } from '@/logger';
+import { closeConnection } from '@/db-utils/dist/client';
 import supertest from 'supertest';
 import { HttpServer } from './server';
 

@@ -46,6 +46,7 @@ do_install() {
 }
 
 # Install all project dependencies.
+do_install tools
 do_install api
 do_install packages/config-loader
 do_install packages/logger
@@ -56,8 +57,8 @@ do_install packages/http-utils
 # so our projects can share core dependencies.
 cd $MASKFILE_DIR
 rm -rf node_modules
-mkdir node_modules
-ln -s "$MASKFILE_DIR/packages/" ./node_modules/@jakedeichert
+mv tools/node_modules . # Move global tools to the root
+ln -s "$MASKFILE_DIR/packages/" ./node_modules/@
 ~~~
 
 

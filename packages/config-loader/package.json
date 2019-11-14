@@ -1,5 +1,5 @@
 {
-  "name": "@jakedeichert/config-loader",
+  "name": "config-loader",
   "version": "0.1.0",
   "author": "Jake Deichert",
   "private": true,
@@ -16,10 +16,7 @@
   "devDependencies": {
     "@jakedeichert/eslint-config": "4.0.5",
     "@types/hapi__joi": "16.0.0",
-    "@types/node": "12.12.7",
     "@typescript-eslint/eslint-plugin": "2.6.1",
-    "@typescript-eslint/parser": "2.6.1",
-    "prettier": "1.19.1",
-    "typescript": "3.7.2"
+    "@typescript-eslint/parser": "2.6.1"
   }
 }

@@ -1,4 +1,4 @@
-import { closeConnection } from '@jakedeichert/db-utils/dist/client';
+import { closeConnection } from '@/db-utils/dist/client';
 import { initSystems } from './bootup';
 
 let hasRun = false;

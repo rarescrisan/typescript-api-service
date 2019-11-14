@@ -1,5 +1,5 @@
-import { Context } from '@jakedeichert/http-utils';
-import { query } from '@jakedeichert/db-utils';
+import { Context } from '@/http-utils';
+import { query } from '@/db-utils';
 
 // Test the database connection with a basic query.
 export async function canConnect(ctx: Context): Promise<boolean> {

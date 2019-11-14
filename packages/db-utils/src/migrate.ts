@@ -1,4 +1,4 @@
-import { logger } from '@jakedeichert/logger';
+import { logger } from '@/logger';
 import { knexClient } from './client';
 
 export async function runMigrations(): Promise<void> {

@@ -1,9 +1,6 @@
-import { Context } from '@jakedeichert/http-utils';
-import {
-    Method,
-    HandlerConfig,
-} from '@jakedeichert/http-utils/dist/controller';
-import { response, HttpResponse } from '@jakedeichert/http-utils/dist/response';
+import { Context } from '@/http-utils';
+import { Method, HandlerConfig } from '@/http-utils/dist/controller';
+import { response, HttpResponse } from '@/http-utils/dist/response';
 import * as healthService from './service';
 
 async function simpleHealthCheck(): HttpResponse {

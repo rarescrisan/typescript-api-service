@@ -1,9 +1,6 @@
 import { Next, Middleware } from '../middleware';
 import { Context } from '../index';
-import {
-    Txn,
-    createTransactionProvider,
-} from '@jakedeichert/db-utils/dist/txn';
+import { Txn, createTransactionProvider } from '@/db-utils/dist/txn';
 
 // Create a new transaction provider for each request.
 export default async (ctx: Context, next: Next): Middleware => {
