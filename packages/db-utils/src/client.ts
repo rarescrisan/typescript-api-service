@@ -19,11 +19,11 @@ export function createClient(
     });
 }
 
-export async function closeDbConnection(): Promise<void> {
+export async function closeConnection(): Promise<void> {
     await knexClient.destroy();
 }
 
-export async function testDbConnection(): Promise<void> {
+export async function testConnection(): Promise<void> {
     try {
         await knexClient.raw('SELECT 1;');
         logger.info('Database connection established successfully');

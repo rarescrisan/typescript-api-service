@@ -1,11 +1,11 @@
 import Koa from 'koa';
 import hapiBoom from '@hapi/boom';
 import { Logger } from '@jakedeichert/logger';
+import { Txn } from '@jakedeichert/db-utils/dist/txn';
 
 export interface Context extends Koa.Context {
     logger: Logger;
-    // txn: () => Promise<knex.Transaction>;
-    // auth: Auth;
+    txn: () => Promise<Txn>;
 
     // Url parameters (added by @koa/router)
     params: KeyValueMap;

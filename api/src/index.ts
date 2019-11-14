@@ -1,10 +1,16 @@
 import { PORT, LOG_LEVEL } from './config';
 import { buildServer } from './server';
 import { initLogger, logger } from '@jakedeichert/logger';
+import { initDb } from './db';
 
 async function init(): Promise<void> {
     try {
         initLogger(LOG_LEVEL);
+
+        // Initialize the database client and run migrations
+        await initDb();
+
+        // Start the server
         buildServer().listen(PORT);
         logger.info(`Service running on port ${PORT}`);
     } catch (err) {
