@@ -1,5 +1,5 @@
 import { closeConnection } from '@jakedeichert/db-utils/dist/client';
-import { initEnvironment } from './server';
+import { initSystems } from './bootup';
 
 let hasRun = false;
 
@@ -8,6 +8,6 @@ export default async function(): Promise<void> {
     // When running test:watch, we don't need to rerun migrations.
     if (hasRun) return Promise.resolve();
     hasRun = true;
-    await initEnvironment();
+    await initSystems();
     await closeConnection();
 }

@@ -1,27 +1,23 @@
-import { LOG_LEVEL } from '../src/config';
-import { initDb } from '../src/db';
-import { initLogger } from '@jakedeichert/logger';
 import { getControllers, getMiddleware } from '../src/server';
+import { initSystems } from './bootup';
 import { createServer } from '@jakedeichert/http-utils/dist/server';
-import { Context } from '@jakedeichert/http-utils';
-import { Next, Middleware } from '@jakedeichert/http-utils/dist/middleware';
-import { TestContext } from './utils';
+import {
+    TestContext,
+    TestServer,
+    testDbTxnMiddleware,
+    createTestServer as newTestServer,
+} from '@jakedeichert/http-utils/dist/test-utils';
 
-export function buildTestServer(testContext: TestContext) {
-    const middleware = [testMiddleware(testContext), ...getMiddleware()];
-    return createServer(getControllers(), middleware);
+export { createTestContext } from '@jakedeichert/http-utils/dist/test-utils';
+
+export function createTestServer(testContext?: TestContext): TestServer {
+    return newTestServer(ctx => {
+        const middleware = [testDbTxnMiddleware(ctx), ...getMiddleware()];
+        return createServer(getControllers(), middleware);
+    }, testContext);
 }
 
-function testMiddleware(
-    testContext: TestContext
-): (ctx: Context, next: Next) => Middleware {
-    return (ctx, next) => {
-        ctx.txn = testContext.ctx.txn;
-        return next();
-    };
-}
-
-export async function initEnvironment() {
-    initLogger(LOG_LEVEL);
-    await initDb();
-}
+beforeAll(async () => {
+    // Boot up all required systems (logger, db, etc...)
+    await initSystems();
+});

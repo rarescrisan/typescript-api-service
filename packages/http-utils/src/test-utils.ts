@@ -1,10 +1,10 @@
+import Koa from 'koa';
 import { Server } from 'http';
-import { buildTestServer } from './server';
-import { initEnvironment } from './server';
+import { Next, Middleware } from './middleware';
 import { createTransactionProvider } from '@jakedeichert/db-utils/dist/txn';
-import { closeConnection } from '@jakedeichert/db-utils/dist/client';
-import { Context } from '@jakedeichert/http-utils';
+import { Context } from './index';
 import { logger } from '@jakedeichert/logger';
+import { closeConnection } from '@jakedeichert/db-utils/dist/client';
 import supertest from 'supertest';
 
 type SuperTest = supertest.SuperTest<supertest.Test>;
@@ -16,10 +16,6 @@ export interface TestContext {
 export interface TestServer {
     api: SuperTest;
 }
-
-beforeAll(async () => {
-    await initEnvironment();
-});
 
 export function createTestContext(): TestContext {
     const newCtx = (): Context => {
@@ -51,22 +47,20 @@ export function createTestContext(): TestContext {
     return testCtx;
 }
 
-export function createTestServer(testContext?: TestContext): TestServer {
+export function createTestServer(
+    buildTestServer: (ctx: TestContext) => Koa,
+    testContext?: TestContext
+): TestServer {
     let server: Server;
     const testCtx = testContext || createTestContext();
-    const testServer = {
-        api: (null as unknown) as SuperTest,
-    };
+    const testServer = {} as TestServer;
 
     const startNewServer = async (): Promise<SuperTest> => {
         server = await new Promise(resolve => {
             const listeningServer = buildTestServer(testCtx).listen(0);
             listeningServer.on('listening', () => resolve(listeningServer));
         });
-
-        const testApiHandle = supertest(server);
-
-        return testApiHandle;
+        return supertest(server);
     };
 
     beforeAll(async () => {
@@ -75,12 +69,19 @@ export function createTestServer(testContext?: TestContext): TestServer {
 
     afterAll(async () => {
         if (!server) return;
-        await new Promise(resolve => {
-            server.close(resolve);
-        });
+        await new Promise(resolve => server.close(resolve));
     });
 
-    return testServer as TestServer;
+    return testServer;
+}
+
+export function testDbTxnMiddleware(
+    testContext: TestContext
+): (ctx: Context, next: Next) => Middleware {
+    return (ctx, next) => {
+        ctx.txn = testContext.ctx.txn;
+        return next();
+    };
 }
 
 afterAll(async () => {

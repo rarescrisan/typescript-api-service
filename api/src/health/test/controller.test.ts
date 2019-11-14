@@ -1,4 +1,4 @@
-import { createTestServer } from '../../../test/utils';
+import { createTestServer } from '../../../test/server';
 
 const prefix = '/health';
 const testServer = createTestServer();
