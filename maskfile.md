@@ -38,7 +38,7 @@ do_install() {
         rm -rf node_modules
     fi
     if [[ "$force" == "true" ]]; then
-        echo "Deleting the package lock in file $project"
+        echo "Deleting the package-lock in file $project"
         rm -rf package-lock.json
     fi
     echo "Installing dependencies in $project"

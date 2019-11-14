@@ -5,8 +5,8 @@
   "private": true,
   "main": "dist/index.js",
   "scripts": {
-    "dev": "npm run clean && tsc --watch",
-    "build": "npm run clean && tsc",
+    "dev": "../../node_modules/.bin/tsc --watch",
+    "build": "npm run clean && ../../node_modules/.bin/tsc",
     "clean": "rm -rf dist"
   },
   "dependencies": {
