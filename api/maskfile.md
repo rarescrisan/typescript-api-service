@@ -175,7 +175,7 @@ fi
 > Lint the project
 
 ~~~sh
-export PATH="node_modules/.bin:$PATH" # Add node modules to path
+export PATH="../node_modules/.bin:$PATH" # Add node modules to path
 $MASK clean
 eslint . --ext ts --ignore-pattern dist
 ~~~

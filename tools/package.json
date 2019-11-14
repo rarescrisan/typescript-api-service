@@ -3,8 +3,11 @@
   "description": "Global tools for the entire monorepo",
   "private": true,
   "devDependencies": {
+    "@jakedeichert/eslint-config": "4.0.5",
     "@types/jest": "24.0.23",
     "@types/node": "12.12.7",
+    "@typescript-eslint/eslint-plugin": "2.6.1",
+    "@typescript-eslint/parser": "2.6.1",
     "concurrently": "5.0.0",
     "jest": "24.9.0",
     "prettier": "1.19.1",

@@ -2,6 +2,9 @@
 // The normal tsconfig.json "excludes" tests so typescript-eslint
 // was ignoring them.
 {
-    "exclude": ["node_modules", "dist"],
-    "extends": "../tsconfig.base.json"
+  "exclude": [
+    "node_modules",
+    "dist"
+  ],
+  "extends": "./tsconfig.base.json"
 }

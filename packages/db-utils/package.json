@@ -14,9 +14,6 @@
     "pg": "7.12.1"
   },
   "devDependencies": {
-    "@jakedeichert/eslint-config": "4.0.5",
-    "@typescript-eslint/eslint-plugin": "2.6.1",
-    "@typescript-eslint/parser": "2.6.1",
     "@types/pg": "7.11.2"
   }
 }
