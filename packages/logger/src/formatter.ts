@@ -1,4 +1,3 @@
-import { inspect } from 'util';
 import { format } from 'winston';
 
 export default () => {
@@ -6,36 +5,18 @@ export default () => {
 };
 
 const formatter = format.printf(
-    ({ level, message, timestamp, requestId, ctx, ...other }) => {
-        const meta = collectRequestMeta(other);
-
+    ({ level, message, timestamp, requestId, ctx }) => {
         if (ctx) {
-            const requestUrl = ctx.request.url;
-            const responseCode = ctx.status;
+            const reqUrl = ctx.request.url;
+            const respCode = ctx.status;
 
-            if (responseCode && ctx.body) {
-                return `${timestamp} [${level}] (id ${requestId} :: ${requestUrl} :: ${responseCode}) >> ${message} ${meta}`;
+            if (respCode && ctx.body) {
+                return `${timestamp} [${level}] (id ${requestId} :: ${reqUrl} :: ${respCode}) >> ${message}`;
             }
 
-            return `${timestamp} [${level}] (id ${requestId} :: ${requestUrl}) >> ${message} ${meta}`;
+            return `${timestamp} [${level}] (id ${requestId} :: ${reqUrl}) >> ${message}`;
         }
 
-        return `${timestamp} [${level}] >> ${message} ${meta}`;
+        return `${timestamp} [${level}] >> ${message}`;
     }
 );
-
-function collectRequestMeta(meta: KeyValueMap): string {
-    if (!Object.keys(meta).length) {
-        return '';
-    }
-
-    let requestMeta;
-    try {
-        requestMeta = JSON.stringify(meta);
-    } catch (err) {
-        // Likely failed because of circular references
-        requestMeta = inspect(meta, { depth: 3 });
-    }
-
-    return requestMeta ? `|| ${requestMeta}` : '';
-}
