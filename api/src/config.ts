@@ -5,7 +5,7 @@ export const IS_TEST_MODE = process.env.NODE_ENV === 'test';
 
 if (IS_TEST_MODE) {
     // Ignore .env and use the test config file.
-    loadConfig('./config/env.test.sh');
+    loadConfig('./config/env.test');
 } else {
     // In production, there's no .env file since kube owns the config.
     loadConfig('.env');

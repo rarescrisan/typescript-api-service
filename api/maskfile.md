@@ -95,9 +95,9 @@ fi
 > Generate config for a specific app environment (dev, docker, test)
 
 ~~~bash
-cp "$MASKFILE_DIR/config/env.$app_env.sh" .env
+cp "$MASKFILE_DIR/config/env.$app_env" .env
 # Also append the gitignored local overrides config...
-cat "$MASKFILE_DIR/config/env.local.sh" >> .env
+cat "$MASKFILE_DIR/config/env.local" >> .env
 ~~~
 
 
