@@ -43,7 +43,7 @@ do_install() {
     fi
 
     echo "Installing dependencies in $project"
-    if [[ "$clean" == "true" || "$force" == "true" ]]; then
+    if [[ "$force" == "true" ]]; then
         npm install
     else
         npm ci
