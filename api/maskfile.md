@@ -97,6 +97,7 @@ fi
 ~~~bash
 cp "$MASKFILE_DIR/config/env.$app_env" .env
 # Also append the gitignored local overrides config...
+touch $MASKFILE_DIR/config/env.local
 cat "$MASKFILE_DIR/config/env.local" >> .env
 ~~~
 
