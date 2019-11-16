@@ -33,7 +33,7 @@ $MASK build
 do_install() {
     project="$1"
     cd "$MASKFILE_DIR/$project"
-    if [[ "$clean" == "true" ]]; then
+    if [[ "$clean" == "true" || "$force" == "true" ]]; then
         echo "Clearing dependencies in $project"
         rm -rf node_modules
     fi
@@ -41,8 +41,13 @@ do_install() {
         echo "Deleting the package-lock in file $project"
         rm -rf package-lock.json
     fi
+
     echo "Installing dependencies in $project"
-    npm install
+    if [[ "$clean" == "true" || "$force" == "true" ]]; then
+        npm install
+    else
+        npm ci
+    fi
 }
 
 # Install all project dependencies.
