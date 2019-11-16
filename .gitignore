@@ -16,7 +16,6 @@ $RECYCLE.BIN/
 #######################################
 coverage/
 dist/
-newrelic_agent.log
 
 #######################################
 # config

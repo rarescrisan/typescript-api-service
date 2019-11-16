@@ -2,8 +2,7 @@
 // For a detailed explanation regarding each configuration property, visit:
 // https://jestjs.io/docs/en/configuration.html
 
-// NOTE
-// To regenerate this config, run jest --init
+// NOTE: to regenerate this config, run jest --init
 
 module.exports = {
     //==============================================================================
