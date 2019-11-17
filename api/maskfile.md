@@ -33,6 +33,7 @@ concurrently -p "[{name}]" \
 ~~~bash
 if [[ "$only_start" != "true" ]]; then
     $MASK config dev
+    $MASK build
     $MASK services start
 fi
 set -a && source .env # Inject env vars
