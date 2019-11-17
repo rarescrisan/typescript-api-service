@@ -119,8 +119,6 @@ docker push $ecr_url
 ~~~bash
 set -a && source config/env.test # Inject env vars
 export PATH="../node_modules/.bin:$PATH" # Add node modules to path
-$MASK clean
-
 if [[ "$clean" == "true" ]]; then
     jest --verbose --no-cache
 elif [[ "$watch" == "true" ]]; then
@@ -184,14 +182,11 @@ exports.down = function(knex) {
 
 ~~~bash
 export PATH="../node_modules/.bin:$PATH" # Add node modules to path
-glob1="{config,lib,migrations,scripts,src,test,typings}/**/*.{js,jsx,ts,tsx,css,html,json}"
-glob2="*.{js,jsx,ts,tsx,css,html,json}"
-
-$MASK clean
+filter="{config,docker,lib,migrations,scripts,src,test,typings,.}/**/*.{js,jsx,ts,tsx,css,html,json,yml}"
 if [[ $check == "true" ]]; then
-    prettier $glob1 $glob2 --list-different
+    prettier $filter --list-different
 else
-    prettier $glob1 $glob2 --write
+    prettier $filter --write
 fi
 ~~~
 
@@ -204,7 +199,6 @@ fi
 
 ~~~bash
 export PATH="../node_modules/.bin:$PATH" # Add node modules to path
-$MASK clean
 eslint . --ext ts --ignore-pattern dist
 ~~~
 
