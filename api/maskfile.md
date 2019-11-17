@@ -23,12 +23,12 @@ concurrently -p "[{name}]" \
 
 
 ## start
-> Run the service without building
+> Build and run the service
 
 **OPTIONS**
 * only_start
     * flags: -s --only-start
-    * desc: Skip starting the docker services
+    * desc: Skip building and starting the docker services
 
 ~~~bash
 if [[ "$only_start" != "true" ]]; then
