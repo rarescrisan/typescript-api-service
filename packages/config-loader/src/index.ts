@@ -1,9 +1,4 @@
 import joi from '@hapi/joi';
-import dotenv from 'dotenv';
-
-export function loadConfig(envFilename: string) {
-    dotenv.config({ path: envFilename });
-}
 
 // Return a reference to joi so the client doesn't have to install it.
 export function validator() {

@@ -10,7 +10,6 @@
     "clean": "rm -rf dist"
   },
   "dependencies": {
-    "dotenv": "8.2.0",
     "@hapi/joi": "16.0.0"
   },
   "devDependencies": {

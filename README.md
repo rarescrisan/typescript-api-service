@@ -5,7 +5,6 @@
 
 ## TODO:
 
-* rename env.*.sh to *.env
 
 ## Tools directory
 
@@ -19,3 +18,8 @@ The `@/` symlink
 
 
 
+
+## Requirements
+
+* watchexec
+* docker

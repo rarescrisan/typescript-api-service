@@ -5,16 +5,38 @@
 
 
 ## dev
-> Start the dev server
+> Run the service and rebuild on file change
 
-~~~sh
+~~~bash
+$MASK services start
 export PATH="../node_modules/.bin:$PATH" # Add node modules to path
 $MASK clean
 concurrently -p "[{name}]" \
     -n "TypeScript,Node,Config" -c "cyan.bold,green.bold,magenta.bold" \
     "tsc --watch --preserveWatchOutput" \
-    "watchexec -w dist -w ../packages -w . --exts js,env -r 'node dist/index.js'" \
-    "watchexec -w config -r 'echo \"Updating config...\" && $MASK config dev'"
+    "watchexec -w dist -w ../packages -w . --exts js,env -r '$MASK start -s'" \
+    "watchexec -w config 'echo \"Updating config...\" && $MASK config dev'"
+~~~
+
+
+
+
+
+## start
+> Run the service without building
+
+**OPTIONS**
+* only_start
+    * flags: -s --only-start
+    * desc: Skip starting the docker services
+
+~~~bash
+if [[ "$only_start" != "true" ]]; then
+    $MASK config dev
+    $MASK services start
+fi
+set -a && source .env # Inject env vars
+node dist/index.js
 ~~~
 
 
@@ -24,11 +46,30 @@ concurrently -p "[{name}]" \
 ## build
 > Build in production mode
 
-~~~sh
+~~~bash
 export PATH="../node_modules/.bin:$PATH" # Add node modules to path
 $MASK clean
 export NODE_ENV=production
 tsc
+~~~
+
+
+
+
+
+## services
+
+### services start
+> Start all background docker dependencies
+
+~~~bash
+set -a && source .env # Inject env vars
+cd docker && docker-compose up -d --build
+# Sleep until the database is ready
+until docker exec api_db psql $DB_NAME &>/dev/null; do
+    echo "Waiting for the database to be ready..."
+    sleep 1s
+done
 ~~~
 
 
@@ -40,7 +81,7 @@ tsc
 ### image publish
 > Build, tag and publish a new docker image
 
-~~~sh
+~~~bash
 # Pulls the npm package's version field (v1.2.3)
 version=v$(shell npm run env | grep "npm_package_version" | cut -d "=" -f2)
 img_name=api-service
@@ -75,6 +116,7 @@ docker push $ecr_url
     * desc: Start jest in watch mode
 
 ~~~bash
+set -a && source config/env.test # Inject env vars
 export PATH="../node_modules/.bin:$PATH" # Add node modules to path
 $MASK clean
 
@@ -95,10 +137,10 @@ fi
 > Generate config for a specific app environment (dev, docker, test)
 
 ~~~bash
-cp "$MASKFILE_DIR/config/env.$app_env" .env
+cp "config/env.$app_env" .env
 # Also append the gitignored local overrides config...
-touch $MASKFILE_DIR/config/env.local
-cat "$MASKFILE_DIR/config/env.local" >> .env
+touch config/env.local
+cat "config/env.local" >> .env
 ~~~
 
 
@@ -110,7 +152,7 @@ cat "$MASKFILE_DIR/config/env.local" >> .env
 ### create migration (name)
 > Create a new database migration
 
-~~~sh
+~~~bash
 timestamp=$(date +"%Y%m%d%H%M%S")
 filename="migrations/${timestamp}_${name// /-}.js"
 echo "Creating new migration: $filename"
@@ -139,7 +181,7 @@ exports.down = function(knex) {
     * flags: -c --check
     * desc: Show which files are not formatted correctly
 
-~~~sh
+~~~bash
 export PATH="../node_modules/.bin:$PATH" # Add node modules to path
 glob1="{config,lib,migrations,scripts,src,test,typings}/**/*.{js,jsx,ts,tsx,css,html,json}"
 glob2="*.{js,jsx,ts,tsx,css,html,json}"
@@ -159,7 +201,7 @@ fi
 ## lint
 > Lint the project
 
-~~~sh
+~~~bash
 export PATH="../node_modules/.bin:$PATH" # Add node modules to path
 $MASK clean
 eslint . --ext ts --ignore-pattern dist
