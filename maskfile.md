@@ -81,9 +81,26 @@ do_build() {
     npm run build
 }
 
-# Build all packages
+# Build all packages in a specific order
 do_build packages/config-loader
 do_build packages/logger
 do_build packages/db-utils
 do_build packages/http-utils
+~~~
+
+
+
+
+
+## run (cmd)
+> Run an npm cmd inside each package
+
+~~~bash
+# Run command inside each package
+for dir in $MASKFILE_DIR/packages/*; do
+    if [[ -d "$dir" ]]; then
+        cd "$dir" && echo "Running inside $dir"
+        npm run "$cmd"
+    fi
+done
 ~~~

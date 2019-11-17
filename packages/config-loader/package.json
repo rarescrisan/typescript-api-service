@@ -7,6 +7,7 @@
   "scripts": {
     "dev": "../../node_modules/.bin/tsc --watch",
     "build": "npm run clean && ../../node_modules/.bin/tsc",
+    "lint": "../../node_modules/.bin/eslint . --ext ts --ignore-pattern dist",
     "clean": "rm -rf dist"
   },
   "dependencies": {

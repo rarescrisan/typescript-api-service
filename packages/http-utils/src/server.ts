@@ -4,6 +4,7 @@ import { Controller } from './controller';
 import { Context } from './index';
 import { runPreHandlerMiddleware } from './middleware/pre-handler';
 import { MiddlewareHandler } from './middleware';
+import { ResponseBuilder } from './response';
 
 export type HttpServer = Koa;
 
@@ -25,10 +26,11 @@ function initRoutes(app: Koa, controllers: Controller[]): void {
 
     controllers.forEach(controller => {
         controller.endpoints().forEach(endpoint => {
-            const handler = async (ctx: Context) => {
+            const handler = async (ctx: Context): Promise<ResponseBuilder> => {
                 await runPreHandlerMiddleware(ctx, endpoint);
                 return endpoint.handler(ctx);
             };
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             router[endpoint.method](endpoint.route, handler as any);
         });
     });

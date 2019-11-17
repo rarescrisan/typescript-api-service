@@ -1,7 +1,7 @@
 import joi from '@hapi/joi';
 
 // Return a reference to joi so the client doesn't have to install it.
-export function validator() {
+export function validator(): joi.Root {
     return joi;
 }
 

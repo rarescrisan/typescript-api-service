@@ -5,7 +5,7 @@ export { Logger } from 'winston';
 
 export let logger: Logger;
 
-export function initLogger(logLevel: string) {
+export function initLogger(logLevel: string): Logger {
     logger = createLogger({
         level: logLevel,
         format: formatter(),

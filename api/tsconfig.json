@@ -1,8 +1,8 @@
 {
-    "compilerOptions": {
-        "declaration": false,
-        "outDir": "dist"
-    },
-    "exclude": ["node_modules", "**/test/*.test.ts", "test", "dist"],
-    "extends": "../tsconfig.base.json"
+  "compilerOptions": {
+    "declaration": false,
+    "outDir": "dist"
+  },
+  "exclude": ["node_modules", "**/test/*.test.ts", "test", "dist"],
+  "extends": "../tsconfig.base.json"
 }

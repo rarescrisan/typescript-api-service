@@ -1,9 +1,5 @@
 import { format } from 'winston';
 
-export default () => {
-    return format.combine(format.colorize(), format.timestamp(), formatter);
-};
-
 const formatter = format.printf(
     ({ level, message, timestamp, requestId, ctx }) => {
         if (ctx) {
@@ -20,3 +16,8 @@ const formatter = format.printf(
         return `${timestamp} [${level}] >> ${message}`;
     }
 );
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export default (): any => {
+    return format.combine(format.colorize(), format.timestamp(), formatter);
+};

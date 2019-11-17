@@ -22,7 +22,7 @@ interface ResponseBuilderContext {
 // Helps build responses rather than mutating Koa ctx directly.
 // The response-structure middleware finalizes the response based
 // on this ResponseBuilderContext
-export function response(code: number = 200): ResponseBuilder {
+export function response(code = 200): ResponseBuilder {
     const ctx: ResponseBuilderContext = {
         code,
         contentType: ContentType.JSON, // by default

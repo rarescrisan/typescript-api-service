@@ -1,11 +1,12 @@
 import { Server } from 'http';
 import { Next, Middleware } from './middleware';
-import { createTransactionProvider } from '@/db-utils/dist/txn';
+import { createTransactionProvider, Txn } from '@/db-utils/dist/txn';
 import { Context } from './index';
 import { logger } from '@/logger';
 import { closeConnection } from '@/db-utils/dist/client';
 import supertest from 'supertest';
 import { HttpServer } from './server';
+import { ResponseBuilder } from './response';
 
 type SuperTest = supertest.SuperTest<supertest.Test>;
 
@@ -23,7 +24,7 @@ export function createTestContext(): TestContext {
         const ctx: any = { logger };
         const txnProvider = createTransactionProvider();
 
-        ctx.txn = async () => {
+        ctx.txn = async (): Promise<Txn> => {
             return txnProvider();
         };
 
@@ -78,7 +79,7 @@ export function createTestServer(
 export function testDbTxnMiddleware(
     testContext: TestContext
 ): (ctx: Context, next: Next) => Middleware {
-    return (ctx, next) => {
+    return (ctx, next): Promise<ResponseBuilder> => {
         ctx.txn = testContext.ctx.txn;
         return next();
     };

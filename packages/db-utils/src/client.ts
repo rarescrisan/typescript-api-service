@@ -9,7 +9,7 @@ export function createClient(
     dbHost: string,
     dbPort: number,
     dbName: string
-) {
+): void {
     const conn = `postgres://${dbUser}:${dbPass}@${dbHost}:${dbPort}/${dbName}`;
     knexClient = knex({
         client: 'pg',

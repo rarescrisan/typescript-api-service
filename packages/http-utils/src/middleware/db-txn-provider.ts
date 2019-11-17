@@ -10,7 +10,7 @@ export default async (ctx: Context, next: Next): Middleware => {
     // A database transaction is lazily created on the first call to this
     // function. Once it's created, it's reused for all other database queries
     // within the lifecycle of this request.
-    ctx.txn = async () => {
+    ctx.txn = async (): Promise<Txn> => {
         doesTransactionExist = true;
         return txnProvider();
     };

@@ -4,11 +4,11 @@ const ERROR = 'error';
 
 module.exports = {
     parser: '@typescript-eslint/parser',
+    plugins: ['@typescript-eslint'],
     extends: [
         '@jakedeichert/eslint-config',
         'plugin:@typescript-eslint/recommended',
     ],
-    plugins: ['@typescript-eslint'],
 
     env: {
         jest: true,
@@ -16,7 +16,10 @@ module.exports = {
     },
 
     rules: {
-        // Disable some things prettier takes care of
-        '@typescript-eslint/indent': OFF,
+        '@typescript-eslint/indent': OFF, // Prettier handles formatting
+        '@typescript-eslint/no-use-before-define': [
+            ERROR,
+            { functions: false },
+        ],
     },
 };
