@@ -53,10 +53,12 @@ do_install() {
 # Install all project dependencies.
 do_install tools
 do_install api
-do_install packages/config-utils
-do_install packages/logger
-do_install packages/db-utils
-do_install packages/http-utils
+for package_dir in packages/*; do
+    if [[ -d "$package_dir" ]]; then
+        do_install $package_dir
+        cd "$MASKFILE_DIR"
+    fi
+done
 
 # Create a node_modules symlink to the packages directory
 # so our projects can share core dependencies.
@@ -92,15 +94,16 @@ do_build packages/http-utils
 
 
 
-## run (cmd)
+## run (npm_cmd)
 > Run an npm cmd inside each package
 
 ~~~bash
 # Run command inside each package
-for dir in $MASKFILE_DIR/packages/*; do
-    if [[ -d "$dir" ]]; then
-        cd "$dir" && echo "Running inside $dir"
-        npm run "$cmd"
+for package_dir in packages/*; do
+    if [[ -d "$package_dir" ]]; then
+        cd "$MASKFILE_DIR/$package_dir" && echo "Running inside $package_dir"
+        npm run "$npm_cmd"
+        cd "$MASKFILE_DIR"
     fi
 done
 ~~~
