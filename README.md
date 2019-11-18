@@ -1,4 +1,4 @@
-# node-api
+# TypeScript API Service Boilerplate
 
 This is my monorepo boilerplate setup for typescript node services.
 
