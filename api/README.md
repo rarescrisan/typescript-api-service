@@ -1,6 +1,9 @@
 # API Service Example
 
 
+This is a basic typescript api service with an example health controller included.
+
+
 
 
 
@@ -18,7 +21,7 @@ This directory contains the `docker-compose` setup which boots up a postgres dat
 
 **/migrations**
 
-These are knex migrations that run during the service's bootup phase before accepting http connections. If a migration fails to run, the service will exit with an error.
+These are `knex` migrations that run during the service's bootup phase before accepting http connections. If a migration fails to run, the service will exit with an error.
 
 **/src**
 
@@ -43,3 +46,35 @@ Take a look at the [health controller test](./src/health/test/controller.test.ts
 **/typings**
 
 This contains useful global types and type overrides for third party packages.
+
+
+
+
+
+## Getting started
+
+This service uses `mask` as a task runner, instead of npm scripts. Listed below are some of the common commands you'll run.
+
+**`mask dev`**
+
+This will start the service in development mode with file watching enabled for auto rebuilds.
+
+**`mask start`**
+
+If you're not actively developing this service and just want it to run, this is the command to do so.
+
+**`mask test`**
+
+This runs the `jest` test suites. Run `mask test -w` to start `jest` in watch mode.
+
+**`mask format`**
+
+Formats all files with `prettier`.
+
+**`mask lint`**
+
+Lints all files with `eslint`.
+
+**`mask create migration (name)`**
+
+This makes it easy to create a new `knex` migration file inside `migrations/`.
