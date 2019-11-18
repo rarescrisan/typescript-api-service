@@ -1,5 +1,4 @@
-# API Service Example
-
+# TypeScript API Service Example
 
 This is a basic typescript api service with an example health controller included.
 

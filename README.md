@@ -1,6 +1,6 @@
-# TypeScript API Service Boilerplate
+# Monorepo Setup for TypeScript Services
 
-This is my monorepo boilerplate setup for typescript node services.
+This is my boilerplate monorepo for developing typescript services. An example api service is included, along with some helper packages and middleware.
 
 
 
