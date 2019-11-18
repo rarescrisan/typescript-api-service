@@ -18,7 +18,7 @@ This directory contains common modules shared between services. When running `ma
 
 **/tools**
 
-This directory contains global tools shared between all projects. Eslint, Prettier, TypeScript, Jest, and more. When `mask install` is ran, these tools are hoisted to the root `node_modules` directory where they also become available to all projects.
+This directory contains global tools shared between all projects. Eslint, Prettier, TypeScript, Jest, and more. When you run `mask install`, these tools are hoisted to the root `node_modules` directory where they also become available to all projects.
 
 
 
