@@ -55,26 +55,14 @@ This contains useful global types and type overrides for third party packages.
 
 This service uses `mask` as a task runner, instead of npm scripts. Listed below are some of the common commands you'll run.
 
-**`mask dev`**
+**`mask dev`**: This will start the service in development mode with file watching enabled for auto rebuilds.
 
-This will start the service in development mode with file watching enabled for auto rebuilds.
+**`mask start`**: If you're not actively developing this service and just want it to run, this is the command to do so.
 
-**`mask start`**
+**`mask test`**: This runs the `jest` test suites. Run `mask test -w` to start `jest` in watch mode.
 
-If you're not actively developing this service and just want it to run, this is the command to do so.
+**`mask format`**: Formats all files with `prettier`.
 
-**`mask test`**
+**`mask lint`**: Lints all files with `eslint`.
 
-This runs the `jest` test suites. Run `mask test -w` to start `jest` in watch mode.
-
-**`mask format`**
-
-Formats all files with `prettier`.
-
-**`mask lint`**
-
-Lints all files with `eslint`.
-
-**`mask create migration (name)`**
-
-This makes it easy to create a new `knex` migration file inside `migrations/`.
+**`mask create migration (name)`**: This makes it easy to create a new `knex` migration file inside `migrations/`.
