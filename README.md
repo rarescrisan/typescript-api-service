@@ -26,6 +26,22 @@ This is used to spin up a database and other background services.
 
 
 
+## Getting started
+
+Give the root [`maskfile.md`](./maskfile.md) a read to get familiar with some of the monorepo's top level commands. The api service also has its own [`maskfile.md`](./api/maskfile.md) which contains commands specific to itself.
+
+### Preparation
+
+Run `mask bootstrap`. This will install and build all packages and services so that they are ready for use.
+
+### Running the api service
+
+To start the api service, `cd` into `./api` and run `mask start`. See the [`README.md`](./api/README.md) for more details.
+
+
+
+
+
 ## Directory overview
 
 **/api**
@@ -39,22 +55,6 @@ This directory contains common modules shared between services. When running `ma
 **/tools**
 
 This directory contains global tools shared between all projects. Tools include `eslint`, `prettier`, `typescript`, `jest` and more. When you run `mask install`, these tools are hoisted to the root `node_modules` directory so they become available to all projects.
-
-
-
-
-
-## Getting started
-
-Give the root [`maskfile.md`](./maskfile.md) a read to get familiar with some of the monorepo's top level commands. The api service also has its own [`maskfile.md`](./api/maskfile.md) which contains commands specific to itself.
-
-### Preparation
-
-Run `mask bootstrap`. This will install and build all packages and services so that they are ready for use.
-
-### Running the api service
-
-To start the api service, `cd` into `./api` and run `mask start`. See the [`README.md`](./api/README.md) for more details.
 
 
 
