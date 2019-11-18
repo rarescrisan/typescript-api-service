@@ -1,5 +1,5 @@
 {
-  "name": "config-loader",
+  "name": "config-utils",
   "version": "0.1.0",
   "author": "Jake Deichert",
   "private": true,

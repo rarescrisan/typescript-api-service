@@ -1,5 +1,5 @@
 import pkg from '../package.json';
-import { assertValue, validator } from '@/config-loader';
+import { assertValue, validator } from '@/config-utils';
 
 export const IS_TEST_MODE = process.env.NODE_ENV === 'test';
 

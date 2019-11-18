@@ -53,7 +53,7 @@ do_install() {
 # Install all project dependencies.
 do_install tools
 do_install api
-do_install packages/config-loader
+do_install packages/config-utils
 do_install packages/logger
 do_install packages/db-utils
 do_install packages/http-utils
@@ -82,7 +82,7 @@ do_build() {
 }
 
 # Build all packages in a specific order
-do_build packages/config-loader
+do_build packages/config-utils
 do_build packages/logger
 do_build packages/db-utils
 do_build packages/http-utils
