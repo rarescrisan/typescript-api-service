@@ -83,7 +83,7 @@ do_build() {
     npm run build
 }
 
-# Build all packages in a specific order
+# Build all packages in a specific order due to how they depend on each other.
 do_build packages/config-utils
 do_build packages/logger
 do_build packages/db-utils
