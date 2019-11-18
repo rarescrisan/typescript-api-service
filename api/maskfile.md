@@ -8,9 +8,10 @@
 > Run the service and rebuild on file change
 
 ~~~bash
+set -e # Exit on error
 $MASK services start
-export PATH="../node_modules/.bin:$PATH" # Add node modules to path
 $MASK clean
+export PATH="../node_modules/.bin:$PATH" # Add node modules to path
 concurrently -p "[{name}]" \
     -n "TypeScript,Node,Config" -c "cyan.bold,green.bold,magenta.bold" \
     "tsc --watch --preserveWatchOutput" \
@@ -31,10 +32,11 @@ concurrently -p "[{name}]" \
     * desc: Skip building and starting the docker services
 
 ~~~bash
+set -e # Exit on error
 if [[ "$only_start" != "true" ]]; then
     $MASK config dev
-    $MASK build
     $MASK services start
+    $MASK build
 fi
 set -a && source .env # Inject env vars
 node dist/index.js
@@ -64,6 +66,7 @@ tsc
 > Start all background docker dependencies
 
 ~~~bash
+set -e # Exit on error
 set -a && source .env # Inject env vars
 cd docker && docker-compose up -d --build
 # Sleep until the database is ready
@@ -83,6 +86,7 @@ done
 > Build, tag and publish a new docker image
 
 ~~~bash
+set -e # Exit on error
 # Pulls the npm package's version field (v1.2.3)
 version=v$(shell npm run env | grep "npm_package_version" | cut -d "=" -f2)
 img_name=api-service
@@ -136,6 +140,7 @@ fi
 > Generate config for a specific app environment (dev, docker, test)
 
 ~~~bash
+set -e # Exit on error
 cp "config/env.$app_env" .env
 # Also append the gitignored local overrides config...
 touch config/env.overrides
@@ -213,6 +218,5 @@ eslint . --ext ts --ignore-pattern dist
 > Cleans dist
 
 ~~~sh
-rm -rf dist
-mkdir dist
+rm -rf dist && mkdir dist
 ~~~

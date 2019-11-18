@@ -10,6 +10,7 @@ Commands for the entire monorepo.
 > Installs all dependencies and builds all packages
 
 ~~~bash
+set -e # Exit on error
 $MASK install
 $MASK build
 ~~~
@@ -30,6 +31,7 @@ $MASK build
     * desc: Delete the package-lock file
 
 ~~~bash
+set -e # Exit on error
 do_install() {
     project="$1"
     cd "$MASKFILE_DIR/$project"
@@ -83,6 +85,7 @@ ln -s "$MASKFILE_DIR/packages/" ./node_modules/@
     * desc: Rebuild packages on file change
 
 ~~~bash
+set -e # Exit on error
 do_build() {
     project="$1"
     cd "$MASKFILE_DIR/$project"
