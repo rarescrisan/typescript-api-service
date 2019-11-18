@@ -70,5 +70,5 @@ The namespace `@` was purposefully chosen because npm disallows it. This guarant
 
 ### Why not use lerna to manage the monorepo instead?
 
-In the past, I've found lerna to be a little bloated and overly complicated. Since we don't need to publish packages, scripting the installation and build processes for all packages in the [`maskfile.md`](./maskfile.md) was very simple. Also, due to node's module resolution algorithm, we don't need to link all packages together as they're all readily available in the top level `node_modules/@` namespace.
+In the past, I've found lerna to be bloated, slow, error-prone and overly complicated. Since we don't need to publish packages, scripting the installation and build processes for all packages in the [`maskfile.md`](./maskfile.md) was very simple. Also, due to node's module resolution algorithm, we don't need to link all packages together as they're all readily available in the top level `node_modules/@` namespace.
 
