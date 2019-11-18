@@ -139,7 +139,10 @@ fi
 cp "config/env.$app_env" .env
 # Also append the gitignored local overrides config...
 touch config/env.overrides
-cat "config/env.overrides" >> .env
+echo "#######################################################################" >> .env
+echo "# LOCAL OVERRIDES" >> .env
+echo "#######################################################################" >> .env
+cat config/env.overrides >> .env
 ~~~
 
 
