@@ -9,6 +9,9 @@ module.exports = {
         '@jakedeichert/eslint-config',
         'plugin:@typescript-eslint/recommended',
     ],
+    parserOptions: {
+        project: `${__dirname}/tsconfig.eslint.json`,
+    },
 
     env: {
         jest: true,
