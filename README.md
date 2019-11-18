@@ -54,9 +54,7 @@ Run `mask bootstrap`. This will install and build all packages and services so t
 
 ### Running the api service
 
-To start the api service, `cd` into `./api` and run `mask start`.
-
-This will spin up a docker postgres database container, compile the typescript source and then run the service. See the [`README.md`](./api/README.md) for more details.
+To start the api service, `cd` into `./api` and run `mask start`. See the [`README.md`](./api/README.md) for more details.
 
 
 

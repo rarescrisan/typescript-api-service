@@ -7,6 +7,28 @@ This is a basic typescript api service with an example health controller include
 
 
 
+## Getting started
+
+This service uses `mask` as a task runner, instead of npm scripts. Listed below are some of the common commands you'll run.
+
+> All commands assume that you've already ran `mask bootstrap` in the root of this repo which prepares all packages for use.
+
+**`mask dev`**: This will spin up the docker database container and then start the service in development mode with file watching enabled for auto rebuilds.
+
+**`mask start`**: If you're not actively developing this service and just want it to run, this is the command to do so. This will spin up the docker database container and then start the service.
+
+**`mask test`**: This runs the `jest` test suites. Run `mask test -w` to start `jest` in watch mode.
+
+**`mask format`**: Formats all files with `prettier`.
+
+**`mask lint`**: Lints all files with `eslint`.
+
+**`mask create migration (name)`**: This makes it easy to create a new `knex` migration file inside `migrations/`.
+
+
+
+
+
 ## Directory overview
 
 **/config**
@@ -46,23 +68,3 @@ Take a look at the [health controller test](./src/health/test/controller.test.ts
 **/typings**
 
 This contains useful global types and type overrides for third party packages.
-
-
-
-
-
-## Getting started
-
-This service uses `mask` as a task runner, instead of npm scripts. Listed below are some of the common commands you'll run.
-
-**`mask dev`**: This will start the service in development mode with file watching enabled for auto rebuilds.
-
-**`mask start`**: If you're not actively developing this service and just want it to run, this is the command to do so.
-
-**`mask test`**: This runs the `jest` test suites. Run `mask test -w` to start `jest` in watch mode.
-
-**`mask format`**: Formats all files with `prettier`.
-
-**`mask lint`**: Lints all files with `eslint`.
-
-**`mask create migration (name)`**: This makes it easy to create a new `knex` migration file inside `migrations/`.
