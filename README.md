@@ -67,3 +67,8 @@ This will spin up a docker postgres database container, compile the typescript s
 ### Why use the `@` namespace for packages?
 
 The namespace `@` was purposefully chosen because npm disallows it. This guarantees we don't overwrite other installed modules by accident when we symlink the `packages` directory to `node_modules/@`. It's also nice and short to type when importing one of these packages.
+
+### Why not use lerna to manage the monorepo instead?
+
+In the past, I've found lerna to be a little bloated and overly complicated. Since we don't need to publish packages, scripting the installation and build processes for all packages in the [`maskfile.md`](./maskfile.md) was very simple. Also, due to node's module resolution algorithm, we don't need to link all packages together as they're all readily available in the top level `node_modules/@` namespace.
+
