@@ -53,6 +53,7 @@ do_install() {
 # Install all project dependencies.
 do_install tools
 do_install api
+cd "$MASKFILE_DIR"
 for package_dir in packages/*; do
     if [[ -d "$package_dir" ]]; then
         do_install $package_dir
@@ -75,6 +76,12 @@ ln -s "$MASKFILE_DIR/packages/" ./node_modules/@
 ## build
 > Build all packages
 
+
+**OPTIONS**
+* watch
+    * flags: -w --watch
+    * desc: Rebuild packages on file change
+
 ~~~bash
 do_build() {
     project="$1"
@@ -88,6 +95,17 @@ do_build packages/config-utils
 do_build packages/logger
 do_build packages/db-utils
 do_build packages/http-utils
+
+# Rebuild packages on file change
+cd "$MASKFILE_DIR"
+if [[ $watch == "true" ]]; then
+    ./node_modules/.bin/concurrently -p "[{name}]" -c "cyan,yellow,green,red" \
+        -n "config-utils,logger,db-utils,http-utils" \
+        "cd packages/config-utils      && npm run dev" \
+        "cd packages/logger            && npm run dev" \
+        "cd packages/db-utils          && npm run dev" \
+        "cd packages/http-utils        && npm run dev"
+fi
 ~~~
 
 
