@@ -1,6 +1,6 @@
 # node-api
 
-This is a monorepo boilerplate setup for TypeScript Node services.
+This is a monorepo boilerplate setup for typescript node services.
 
 
 
@@ -8,17 +8,17 @@ This is a monorepo boilerplate setup for TypeScript Node services.
 
 **/api**
 
-This is a basic TypeScript API service example.
+This is a basic typescript api service example.
 
 
 **/packages**
 
-This directory contains common modules shared between services. When running `mask install` in the repo root, these directories are hoisted into `node_modules/@/<package-name>` where they become available to all services due to Node's module resolution algorithm. These modules never need to be published since projects in this monorepo can just reference them via the `@` namespace.
+This directory contains common modules shared between services. When running `mask install` in the repo root, these directories are hoisted into `node_modules/@/<package-name>` where they become available to all services due to node's module resolution algorithm. These modules never need to be published since projects in this monorepo can just reference them via the `@` namespace.
 
 
 **/tools**
 
-This directory contains global tools shared between all projects. Eslint, Prettier, TypeScript, Jest, and more. When you run `mask install`, these tools are hoisted to the root `node_modules` directory where they also become available to all projects.
+This directory contains global tools shared between all projects. Tools include eslint, prettier, typescript, jest, and more. When you run `mask install`, these tools are hoisted to the root `node_modules` directory where they also become available to all projects.
 
 
 
@@ -60,7 +60,7 @@ Run `mask bootstrap`. This will install and build all packages and services so t
 
 To start the api service, `cd` into `./api` and run `mask start`.
 
-This will spin up a docker postgres database container, compile the TypeScript source and then run the service.
+This will spin up a docker postgres database container, compile the typescript source and then run the service.
 
 
 
