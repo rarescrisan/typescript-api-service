@@ -1,6 +1,6 @@
-# Monorepo Setup for TypeScript Services
+# TypeScript Services Monorepo
 
-This is my boilerplate monorepo for developing typescript services. An example api service is included, along with some helper packages and middleware.
+This is a monorepo structure I've developed for working with typescript services. An example api service is included, along with some helper packages and middleware.
 
 
 
