@@ -1,4 +1,4 @@
-exports.up = function(knex) {
+exports.up = knex => {
     return knex.raw(`
         CREATE OR REPLACE FUNCTION set_updated_at_column()
         RETURNS TRIGGER AS $$
@@ -10,7 +10,7 @@ exports.up = function(knex) {
     `);
 };
 
-exports.down = function(knex) {
+exports.down = knex => {
     return knex.raw(`
         DROP FUNCTION set_updated_at_column;
     `);

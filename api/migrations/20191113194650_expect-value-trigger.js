@@ -1,4 +1,4 @@
-exports.up = function(knex) {
+exports.up = knex => {
     // Throws an exception if the value is null, otherwise return it.
     // USAGE:
     // SELECT expect_non_null_value('abc'::text, 'INVALID');
@@ -19,7 +19,7 @@ exports.up = function(knex) {
     `);
 };
 
-exports.down = function(knex) {
+exports.down = knex => {
     return knex.raw(`
         DROP FUNCTION IF EXISTS expect_non_null_value;
     `);

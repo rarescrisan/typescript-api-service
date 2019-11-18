@@ -160,11 +160,11 @@ filename="migrations/${timestamp}_${name// /-}.js"
 echo "Creating new migration: $filename"
 
 # Write a basic template
-echo "exports.up = function(knex) {
+echo "exports.up = knex => {
     return knex.raw(\`\`);
 };
 
-exports.down = function(knex) {
+exports.down = knex => {
     return knex.raw(\`\`);
 };
 " > "$filename"
