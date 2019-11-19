@@ -66,7 +66,10 @@ This directory contains global tools shared between all projects. Tools include 
 
 The namespace `@` was purposefully chosen because npm disallows it. This guarantees we don't overwrite other installed modules by accident when we symlink the `packages` directory to `node_modules/@`. It's also nice and short to type when importing one of these packages.
 
-### Why not use lerna to manage the monorepo instead?
+### Why not use `lerna` to manage the monorepo instead?
 
-In the past, I've found lerna to be bloated, slow, error-prone and overly complicated. Since we don't need to publish packages, scripting the installation and build processes for all packages in the [`maskfile.md`](./maskfile.md) was very simple. Also, due to node's module resolution algorithm, we don't need to link all packages together as they're all readily available in the top level `node_modules/@` namespace.
+In the past, I've found `lerna` to be bloated, slow, error-prone and overly complicated. Since we don't need to publish packages, scripting the installation and build processes for all packages in the [`maskfile.md`](./maskfile.md) was very simple. Also, due to node's module resolution algorithm, we don't need to link all packages together as they're all readily available in the top level `node_modules/@` namespace.
 
+### Why `mask` instead of `make`?
+
+You can read a bit about my inspiration for creating `mask` [here](https://github.com/jakedeichert/mask#where-did-the-inspiration-come-from). I've started using `mask` as a task runner in all my projects as well as a global utility cli for various commands and scripts I run.
