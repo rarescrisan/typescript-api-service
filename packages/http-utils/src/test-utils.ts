@@ -24,9 +24,7 @@ export function createTestContext(): TestContext {
         const ctx: any = { logger };
         const txnProvider = createTransactionProvider();
 
-        ctx.txn = async (): Promise<Txn> => {
-            return txnProvider();
-        };
+        ctx.txn = async (): Promise<Txn> => txnProvider();
 
         return ctx as Context;
     };
