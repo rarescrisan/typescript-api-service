@@ -26,9 +26,9 @@ export async function closeConnection(): Promise<void> {
 export async function testConnection(): Promise<void> {
     try {
         await knexClient.raw('SELECT 1;');
-        logger.info('Database connection established successfully');
+        logger.info('Database: connection established successfully');
     } catch (err) {
-        logger.error('Database connection failed');
+        logger.error('Database: connection failed');
         throw err;
     }
 }
