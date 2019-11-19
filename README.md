@@ -3,6 +3,8 @@
 This is a monorepo structure I've developed for working with typescript services. An example api service is included, along with some helper packages and middleware.
 
 
+![console screenshot](https://user-images.githubusercontent.com/1631044/69171010-18dc0c80-0ac9-11ea-8071-9ede1e69c2cf.png)
+
 
 
 
