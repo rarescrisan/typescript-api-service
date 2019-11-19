@@ -4,7 +4,9 @@ import { Next, Middleware } from '../middleware';
 import { Context } from '../index';
 
 export default async (ctx: Context, next: Next): Middleware => {
-    const requestId = _.random(1000000, 9999999);
-    ctx.logger = logger.child({ requestId, ctx });
+    // Attach a random id to every log in the lifecycle of a request.
+    // This allows us to easily see which logs are related.
+    const reqId = _.random(1000000, 9999999);
+    ctx.logger = logger.child({ reqId, ctx });
     return next();
 };

@@ -1,21 +1,19 @@
 import { format } from 'winston';
 
-const formatter = format.printf(
-    ({ level, message, timestamp, requestId, ctx }) => {
-        if (ctx) {
-            const reqUrl = ctx.request.url;
-            const respCode = ctx.status;
+const formatter = format.printf(({ level, message, timestamp, reqId, ctx }) => {
+    if (ctx) {
+        const reqUrl = ctx.request.url;
+        const respCode = ctx.status;
 
-            if (respCode && ctx.body) {
-                return `${timestamp} [${level}] (id ${requestId} :: ${reqUrl} :: ${respCode}) >> ${message}`;
-            }
-
-            return `${timestamp} [${level}] (id ${requestId} :: ${reqUrl}) >> ${message}`;
+        if (respCode && ctx.body) {
+            return `${timestamp} [${level}] (id ${reqId} :: ${reqUrl} :: ${respCode}) >> ${message}`;
         }
 
-        return `${timestamp} [${level}] >> ${message}`;
+        return `${timestamp} [${level}] (id ${reqId} :: ${reqUrl}) >> ${message}`;
     }
-);
+
+    return `${timestamp} [${level}] >> ${message}`;
+});
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default (): any => {
