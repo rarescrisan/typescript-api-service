@@ -16,10 +16,6 @@ There's a few system dependencies used that you'll need to install in order to w
 
 This is a cli task runner tool I created, similar to `make`. It looks for a [`maskfile.md`](./maskfile.md) file in the current directory and parses it for commands. For example, if you run `mask bootstrap` in this directory, all packages and services will be installed, built and ready to use. To install `mask`, follow the [instructions here](https://github.com/jakedeichert/mask#installation).
 
-**watchexec** · [repo](https://github.com/watchexec/watchexec)
-
-This is used for rebuilding projects whenever a file changes. You can download a [release from GitHub](https://github.com/watchexec/watchexec/releases) or install it with [cargo or homebrew](https://github.com/watchexec/watchexec#installation).
-
 **docker**
 
 This is used to spin up a database and other background services.
